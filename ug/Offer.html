@@ -1,0 +1,21 @@
+{{ block title }}
+ Decision
+{{ endblock }}
+{{ block content }}
+{% include Constants.instructions_template %}
+ <p>
+
+            You are the <strong>proposer</strong>.
+
+    </p>
+
+    <p>
+
+            The two of you have been given {{ Constants.endowment }}. Enter the amount that you want to offer to the responder.
+
+    </p>
+
+    {{ formfields }}
+    {{ next_button }}
+
+{{ endblock }}

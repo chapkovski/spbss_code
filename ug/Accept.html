@@ -1,0 +1,18 @@
+{{ block title }}
+ Decision
+{{ endblock }}
+{{ block content }}
+{% include Constants.instructions_template %}
+
+    <p>
+        You are the <strong>responder</strong>.
+    </p>
+
+    <p>
+        The other player has offered you {{ group.amount_offered }}.
+    </p>
+
+    {{ formfields }}
+    {{ next_button }}
+
+{{ endblock }}

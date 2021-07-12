@@ -18,6 +18,14 @@ SESSION_CONFIGS = [
         display_name='Ultimatum game',
         app_sequence=['ug'],
         num_demo_participants=2,
+        strategy=False
+    ),
+    dict(
+        name='ug_strategy',
+        display_name='Ultimatum game  - strategy method',
+        app_sequence=['ug'],
+        num_demo_participants=2,
+        strategy=True
     ),
     dict(
         name='tg',
