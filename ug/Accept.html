@@ -2,17 +2,19 @@
  Decision
 {{ endblock }}
 {{ block content }}
-{% include Constants.instructions_template %}
+
 
     <p>
-        You are the <strong>responder</strong>.
+        You are the <strong>{{Constants.responder_role}}</strong>.
     </p>
 
     <p>
-        The other player has offered you {{ group.amount_offered }}.
+        The other player ({{Constants.proposer_role}}) has offered you {{ group.amount_offered }}.
     </p>
 
     {{ formfields }}
     {{ next_button }}
+
+{% include Constants.instructions_template %}
 
 {{ endblock }}

@@ -2,13 +2,13 @@
 Decision
 {{ endblock }}
 {{ block content }}
-{% include Constants.instructions_template %}
+
  <p>
-        You are the <strong>responder</strong>.
+        You are the  <strong>{{Constants.responder_role}}</strong>.
     </p>
 
     <p>
-        The proposer will make you an offer on how to divide
+        The <b>{{Constants.proposer_role}}</b> will make you an offer on how to divide
         the {{ Constants.endowment }}.
     </p>
 
@@ -18,5 +18,5 @@ Decision
     </p>
 {{ formfields }}
 {{ next_button }}
-
+{% include Constants.instructions_template %}
 {{ endblock }}

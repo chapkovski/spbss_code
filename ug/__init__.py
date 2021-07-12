@@ -46,10 +46,13 @@ class Group(BaseGroup):
     )
 
     amount_offered = models.CurrencyField(choices=Constants.offer_choices,
-                                          widget=widgets.RadioSelect)
+                                          widget=widgets.RadioSelect,
+                                          label=f'How much you would like to offer to  {Constants.responder_role}?'
+                                          )
 
     offer_accepted = models.BooleanField(
-        doc="if offered amount is accepted (direct response method)"
+        doc="if offered amount is accepted (direct response method)",
+        label=f'Do you want to accept this offer made by {Constants.proposer_role}?'
     )
 
     # for strategy method
