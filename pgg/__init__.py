@@ -3,7 +3,7 @@ from otree.api import *
 
 
 class Constants(BaseConstants):
-    name_in_url = 'public_goods_simple'
+    name_in_url = 'pgg'
     players_per_group = 3
     num_rounds = 1
     endowment = cu(100)
@@ -21,7 +21,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     contribution = models.CurrencyField(
-        min=0, max=Constants.endowment, label="How much will you contribute?"
+        min=0, max=Constants.endowment, label=f"How much will you contribute (from 0 to {Constants.endowment} points)?"
     )
 
 
@@ -51,4 +51,8 @@ class Results(Page):
     pass
 
 
-page_sequence = [Contribute, ResultsWaitPage, Results]
+page_sequence = [
+    Contribute,
+    ResultsWaitPage,
+    Results
+]
