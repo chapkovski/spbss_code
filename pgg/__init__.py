@@ -1,15 +1,13 @@
 from otree.api import *
 
 
-doc = """
-Your app description
-"""
-
 
 class Constants(BaseConstants):
-    name_in_url = 'pgg'
-    players_per_group = None
+    name_in_url = 'public_goods_simple'
+    players_per_group = 3
     num_rounds = 1
+    endowment = cu(100)
+    multiplier = 1.8
 
 
 class Subsession(BaseSubsession):
@@ -17,24 +15,40 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-    pass
+    total_contribution = models.CurrencyField()
+    individual_share = models.CurrencyField()
 
 
 class Player(BasePlayer):
-    pass
+    contribution = models.CurrencyField(
+        min=0, max=Constants.endowment, label="How much will you contribute?"
+    )
+
+
+# FUNCTIONS
+def set_payoffs(group: Group):
+    players = group.get_players()
+    contributions = [p.contribution for p in players]
+    group.total_contribution = sum(contributions)
+    group.individual_share = (
+        group.total_contribution * Constants.multiplier / Constants.players_per_group
+    )
+    for p in players:
+        p.payoff = Constants.endowment - p.contribution + group.individual_share
 
 
 # PAGES
-class MyPage(Page):
-    pass
+class Contribute(Page):
+    form_model = 'player'
+    form_fields = ['contribution']
 
 
 class ResultsWaitPage(WaitPage):
-    pass
+    after_all_players_arrive = set_payoffs
 
 
 class Results(Page):
     pass
 
 
-page_sequence = [MyPage, ResultsWaitPage, Results]
+page_sequence = [Contribute, ResultsWaitPage, Results]
