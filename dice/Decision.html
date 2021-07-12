@@ -1,0 +1,10 @@
+{{ block title }}
+Decision
+{{ endblock }}
+{{ block content }}
+{% include 'dice/includes/instructions.html' %}
+
+{{ formfield player.answer label='Now please enter the number, i.e. the first number you have thrown.'}}
+{{ next_button }}
+
+{{ endblock }}

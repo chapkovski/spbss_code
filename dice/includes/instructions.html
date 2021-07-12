@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-body">
+        <ht class="card-title">Instructions</ht>
+        <ul class="list-group">
+            <li class="list-group-item">
+                For the following questionnaire you will receive a small additional payoff. However, this payoff is not
+                the same for every participant. You determine your own payoff by throwing your die twice as soon as you
+                are asked to.
+            </li>
+            <li class="list-group-item">Your first throw decides on how much you receive. You can see the exact payoff
+                from the following chart. It will remain on the screen until you have entered your throw.
+            </li>
+
+            <li class="list-group-item">
+                <table class="table">
+                    <tr>
+                        {% for i in Constants.payoffs.keys %}
+                        <td>{{i}}</td>
+                        {%endfor%}
+                    </tr>
+                    <tr>
+                        {% for j in Constants.payoffs.values %}
+                        <td>{{j}}</td>
+                        {%endfor%}
+                    </tr>
+                </table>
+            </li>
+
+            <li class="list-group-item" The second throw only serves to make sure that the die is working properly. You
+                may of course throw the die more than twice. However, only the first throw counts.
+            </li>
+
+
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
