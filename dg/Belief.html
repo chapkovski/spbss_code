@@ -1,9 +1,10 @@
 {{ block title }}
-    Belief
+Belief
 {{ endblock }}
 {{ block content }}
-
-    {{ formfields }}
-    {{ next_button }}
-
+<div class="alert alert-info">You are {{player.role}}</div>
+<h5>Try to guess how much <b>{{Constants.dictator_role}}</b> will send you? </h5>
+{{ formfield player.belief label=''}}
+{{ next_button }}
+{{ include 'dg/includes/instructions.html' }}
 {{ endblock }}

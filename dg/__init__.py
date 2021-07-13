@@ -25,12 +25,14 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-    kept = models.CurrencyField(
-        doc="""Amount dictator decided to keep for himself""",
+    send = models.CurrencyField(
+        doc="""Amount dictator sends to a Recipient""",
         min=0,
         max=Constants.endowment,
-        label="I will keep",
+        label=f"I will send to {Constants.recipient_role}",
     )
+    kept = models.CurrencyField()
+    belief = models.CurrencyField()
 
 
 class Player(BasePlayer):
@@ -41,8 +43,9 @@ class Player(BasePlayer):
 def set_payoffs(group: Group):
     dictator = group.get_player_by_role(Constants.dictator_role)
     recipient = group.get_player_by_role(Constants.recipient_role)
+    group.kept = Constants.endowment - group.send
     dictator.payoff = group.kept
-    recipient.payoff = Constants.endowment - group.kept
+    recipient.payoff = group.send
 
 
 # PAGES
@@ -52,11 +55,20 @@ class Intro(Page):
 
 class Decision(Page):
     form_model = 'group'
-    form_fields = ['kept']
+    form_fields = ['send']
 
     @staticmethod
     def is_displayed(player: Player):
         return player.role == Constants.dictator_role
+
+
+class Belief(Page):
+    form_model = 'group'
+    form_fields = ['belief']
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.role == Constants.recipient_role
 
 
 class ResultsWaitPage(WaitPage):
@@ -64,16 +76,13 @@ class ResultsWaitPage(WaitPage):
 
 
 class Results(Page):
-    @staticmethod
-    def vars_for_template(player: Player):
-        group = player.group
-        return dict(offer=Constants.endowment - group.kept)
+    pass
 
 
 page_sequence = [
     Intro,
     Decision,
-
+    Belief,
     ResultsWaitPage,
     Results
 ]
