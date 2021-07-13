@@ -6,6 +6,14 @@ SESSION_CONFIGS = [
         display_name='Dice game (Fischbacher and Föllmi-Heusi 2013)',
         app_sequence=['dice'],
         num_demo_participants=1,
+        beliefs=False
+    ),
+    dict(
+        name='dice_beliefs',
+        display_name='Dice game  with beliefs',
+        app_sequence=['dice'],
+        num_demo_participants=1,
+        beliefs=True
     ),
     dict(
         name='dg',

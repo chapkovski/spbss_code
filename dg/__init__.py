@@ -70,4 +70,10 @@ class Results(Page):
         return dict(offer=Constants.endowment - group.kept)
 
 
-page_sequence = [Intro, Decision, ResultsWaitPage, Results]
+page_sequence = [
+    Intro,
+    Decision,
+
+    ResultsWaitPage,
+    Results
+]

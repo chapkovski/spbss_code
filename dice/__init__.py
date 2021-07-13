@@ -30,6 +30,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     answer = models.IntegerField(min=1, max=6)
+    belief = models.FloatField(min=1, max=6)
 
 
 def set_payoff(player, timeout_happened):
@@ -47,12 +48,22 @@ class Decision(Page):
     before_next_page = set_payoff
 
 
+class Belief(Page):
+    form_model = 'player'
+    form_fields = ['belief']
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.session.config.get('beliefs', False)
+
+
 class Results(Page):
     pass
 
 
 page_sequence = [
-    # Intro,
+    Intro,
     Decision,
+    Belief,
     Results
 ]
