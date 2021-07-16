@@ -11,13 +11,7 @@ class Constants(BaseConstants):
     name_in_url = 'dice'
     players_per_group = None
     num_rounds = 1
-    payoffs = {1: 1,
-               2: 2,
-               3: 3,
-               4: 4,
-               5: 5,
-               6: 0
-               }
+    payoffs = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 0}
 
 
 class Subsession(BaseSubsession):

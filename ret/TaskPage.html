@@ -1,0 +1,47 @@
+{{ block title }}
+Task
+{{ endblock }}
+{{ block content }}
+<div id="app">
+    <div class="row">
+        <div class="col d-flex align-items-center justify-content-center">
+            <h1 class='m-3'><span class="badge bg-danger" id="first"></span></h1>
+            <h1 class='m-3'><span class="badge bg-danger" id="second"></span></h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="number" id="answer"></number>
+            <button type="button" class="btn btn-lg btn-success" onclick="sendValue()">Submit the answer</button>
+        </div>
+    </div>
+</div>
+{{ formfields }}
+{{ next_button }}
+<script>
+    let currentTaskId;
+$(()=>{
+    liveSend({initial:true})
+})
+
+  let answerinput = $('#answer');
+  const $first = $('#first');
+  const $second = $('#second');
+
+
+  function liveRecv(data) {
+      console.debug('DATA', data)
+     const {first, second }= data;
+      currentTaskId = data.task_id;
+     $first.text(first);
+     $second.text(second);
+  }
+
+  function sendValue() {
+    liveSend({task_id:currentTaskId, answer:parseInt(answerinput.val())});
+    answerinput.val(null)
+  }
+</script>
+
+{{ endblock }}

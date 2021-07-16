@@ -14,14 +14,14 @@
             <li class="list-group-item">
                 <table class="table">
                     <tr>
-                        {% for i in Constants.payoffs.keys %}
+                        {{ for i in Constants.payoffs.keys }}
                         <td>{{i}}</td>
-                        {%endfor%}
+                        {{endfor}}
                     </tr>
                     <tr>
-                        {% for j in Constants.payoffs.values %}
+                         {{  for j in Constants.payoffs.values }}
                         <td>{{j}}</td>
-                        {%endfor%}
+                        {{ endfor }}
                     </tr>
                 </table>
             </li>

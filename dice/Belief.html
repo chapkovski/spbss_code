@@ -2,7 +2,7 @@
 Belief
 {{ endblock }}
 {{ block content }}
-{% include 'dice/includes/instructions.html' %}
+{{ include 'dice/includes/instructions.html' }}
 <h5>What in your opinion will be the average number reported by other participants of this study? </h5>
 {{ formfield player.belief label=''}}
 {{ next_button }}

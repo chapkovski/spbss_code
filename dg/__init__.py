@@ -1,5 +1,5 @@
 from otree.api import *
-
+import random
 doc = """
 One player decides how to divide a certain amount between himself and the other
 player.
@@ -18,6 +18,8 @@ class Constants(BaseConstants):
     endowment = cu(100)
     dictator_role = 'Participant A'
     recipient_role = 'Participant B'
+    lb = cu(50)
+    ub = cu(150)
 
 
 class Subsession(BaseSubsession):
@@ -33,11 +35,19 @@ class Group(BaseGroup):
     )
     kept = models.CurrencyField()
     belief = models.CurrencyField()
-
+def send_max(player, value):
+    return player.endowment
 
 class Player(BasePlayer):
-    pass
+    endowment = models.CurrencyField()
 
+
+def creating_session(subsession:Subsession):
+    if subsession.session.config.get('inequal'):
+        for p in subsession.get_players():
+            p.endowment = random.randint(Constants.lb, Constants.ub)
+    else:
+        p.endowment = Constants.endowment
 
 # FUNCTIONS
 def set_payoffs(group: Group):

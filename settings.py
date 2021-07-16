@@ -47,6 +47,12 @@ SESSION_CONFIGS = [
         app_sequence=['pgg'],
         num_demo_participants=3,
     ),
+    dict(
+        name='ret',
+        display_name='RET',
+        app_sequence=['ret'],
+        num_demo_participants=1,
+    ),
 
 ]
 
